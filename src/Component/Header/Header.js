@@ -1,5 +1,13 @@
 import React from 'react';
 import './header.css';
+import { IconButton,Button } from '@material-ui/core';
+import MenuIcon from '@material-ui/icons/Menu';
+import SearchIcon from '@material-ui/icons/Search';
+import AppsIcon from '@material-ui/icons/Apps';
+import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
+import NotificationsIcon from '@material-ui/icons/Notifications';
+import { Avatar } from '@material-ui/core';
+
 
 //Menuicon
 //IconButton
@@ -11,7 +19,7 @@ function Header() {
                <IconButton>
                <MenuIcon />
                </IconButton>
-               <img src="" alt="logo"/>
+               <img src="https://ssl.gstatic.com/ui/v1/icons/mail/rfr/logo_gmail_lockup_dark_1x_r2.png" alt="logo"/>
           </div>
           <div className="header__middle">
               <SearchIcon />
