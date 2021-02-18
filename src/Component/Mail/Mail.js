@@ -76,7 +76,8 @@ function Mail() {
             </div>
           
           <div className="mail__message">
-              This is a message
+              <p>This is a message</p>
+              
           </div>
 
         </div>
