@@ -7,11 +7,11 @@
 
 .login__container {
     display: flex;
-    flex-direction: wrap;
+    flex-direction: column;
     
 }
 
 .login__container > img {
    object-fit: contain;
-   height: 200px;
+   height: 150px;
 }

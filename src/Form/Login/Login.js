@@ -26,8 +26,8 @@ function Login() {
     return (
         <div className="login">
            <div className="login__container">
-               <img src="" alt="logo" />
-                    <Button variant="contained" color="primary" onClick="signIn">Login</Button>
+               <img src="https://ssl.gstatic.com/ui/v1/icons/mail/rfr/logo_gmail_lockup_dark_1x_r2.png" alt="logo" />
+                    <Button variant="contained" color="primary" onClick={signIn}>Login</Button>
            </div>
         </div>
     )

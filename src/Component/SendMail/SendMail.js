@@ -14,15 +14,15 @@ function SendMail() {
     const { register, handleSubmit, watch, errors } = useForm();
     const dispatch  = useDispatch();
     
-    const onSubmit = (formdata)=> {
-    console.log(formdata);
+    const onSubmit = (formdata)=> {    
+    // console.log(formdata);
     db.collection("emails").add({
         to: formdata.to,
         subject: formdata.subject,
         message: formdata.message,
         timestamp: firebase.firestore.FieldValue.serverTimestamp()
     })
-
+        dispatch(closeSendMessage());
     }
 
     return (

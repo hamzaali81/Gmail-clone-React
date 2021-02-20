@@ -17,12 +17,14 @@ import { selectUser } from './features/userSlice';
 import Login from './Form/Login/Login';
 import { auth } from './firebase';
 import { login } from './features/userSlice';
-function App() {
- 
+
+
+function App() { 
   const sendMessageIsOpen = useSelector(selectSendMessageIsOpen);
   const user = useSelector(selectUser);
   const dispatch = useDispatch();
   console.log(sendMessageIsOpen);
+
   useEffect(() => {
          auth.onAuthStateChanged((user)=> {
        if (user) {
@@ -35,9 +37,10 @@ function App() {
              })
            )
 
-       } else {
-           // User is signed out.
-       }
+       } 
+      //  else {
+      //      // User is signed out.
+      //  }
    });
   }, [])
 
