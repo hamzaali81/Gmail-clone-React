@@ -7,13 +7,21 @@ import { Alert, AlertTitle } from '@material-ui/lab';
 import CheckIcon from '@material-ui/icons/Check';
 import { closeSendMessage } from '../../features/mailSlice'
 import { useSelector,useDispatch } from 'react-redux';
+import { db } from '../../firebase';
+import firebase from 'firebase';;
 
 function SendMail() {
     const { register, handleSubmit, watch, errors } = useForm();
     const dispatch  = useDispatch();
-    const onSubmit = (data)=> {
-
-    console.log(data);
+    
+    const onSubmit = (formdata)=> {
+    console.log(formdata);
+    db.collection("emails").add({
+        to: formdata.to,
+        subject: formdata.subject,
+        message: formdata.message,
+        timestamp: firebase.firestore.FieldValue.serverTimestamp()
+    })
 
     }
 

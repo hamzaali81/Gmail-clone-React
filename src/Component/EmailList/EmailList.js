@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{ useState,useEffect } from 'react';
 import './EmailList.css';
 import { IconButton,Button } from '@material-ui/core';
 import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
@@ -13,10 +13,26 @@ import Section from '../Section/Section';
 import InboxIcon from '@material-ui/icons/Inbox';
 import PeopleIcon from '@material-ui/icons/People';
 import LocalOfferIcon from '@material-ui/icons/LocalOffer';
+import { db } from '../../firebase';
 
 import EmailRow from '../EmailRow/EmailRow';
 
 function EmailList() {
+    const [ emails, setEmails ] = useState([]);
+    
+    useEffect(() => {
+        db.collection("emails")
+        .orderBy("timestamp","desc")
+        .onSnapshot((snapshot)=> 
+        setEmails(
+            snapshot.docs.map((doc) =>({
+                id: doc.id,
+                data: doc.data()
+            }) )
+        )
+        )
+    },[])
+    
     return (
         <div className="emailList">
             <div className="emailList__settings">
@@ -59,7 +75,20 @@ function EmailList() {
             </div>
 
             <div className="emailList__list">
-                <EmailRow 
+            {
+                emails.map(({ id,data: { to, subject,message,timestamp } }) => (
+                    <EmailRow 
+                    id={id}
+                    key={id}
+                    title={to}
+                    subtitle={subject}
+                    description={message}
+                    time={new Date(timestamp?.seconds * 1000).toUTCString()}
+                    />
+                ))}
+            
+
+                {/* <EmailRow 
                 title="Twitch"
                 subjec="Hey follow streamer"
                 description="This is a test"
@@ -70,7 +99,7 @@ function EmailList() {
                 subjec="Hey follow streamer"
                 description="This is a test"
                 time="10pm"
-                />
+                /> */}
             </div>
         </div>
     )
